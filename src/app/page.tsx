@@ -6,6 +6,7 @@ export default function Home() {
     <div className='flex flex-row justify-center items-center'>
       123
       <Button>234</Button>
+      <Button>hello world</Button>
     </div>
   );
 }
