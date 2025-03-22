@@ -7,6 +7,7 @@ export default function Home() {
       123
       <Button>234</Button>
       <Button>hello world</Button>
+      <Button>hello world new</Button>
     </div>
   );
 }
