@@ -20,7 +20,7 @@ export default async function Home() { //next.js13新增，async说明服务器�
           <div className="flex">{isAuth && <Button>Go to chats</Button>}</div>
           <p className="text-center max-w-[500px] text-slate-600">
             Join millions of students, research and professionals to instantly
-            answer questions and understand research with AI
+            answer questions and understand research with AI 
           </p>
           <div className="w-full mt-4">
             {isAuth ? (
