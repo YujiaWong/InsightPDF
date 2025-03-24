@@ -6,12 +6,11 @@ on:
   pull_request:
     branches:
       - dev        # 监控对 dev 分支的 PR
-      - master     # 监控对 master 分支的 PR
+      - main
   push:
     branches:
       - dev        # 监控直接推送到 dev 分支
-      - master     # 监控直接推送到 master 分支
-
+      - main
 jobs:
   ci-checks:       # Job的名称，也就是这个流里的一个任务
     runs-on: ubuntu-latest      # 设置虚拟环境，因为检测，下载依赖模拟运行都是在一个纯净的虚拟环境里运行的
@@ -30,6 +29,9 @@ jobs:
       # 执行 ESLint 检查
       - name: Run ESLint
         run: npm run lint
-      # 构建项目（可以选择性地执行）
+      # 构建项目
       - name: Build project
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: npm run build
