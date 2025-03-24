@@ -77,6 +77,10 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
+.cl-avatarBox {
+  width: 2.75rem;
+  height: 2.75rem;
+}
 
 .dark {
   --background: oklch(0.145 0 0);
