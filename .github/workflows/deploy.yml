@@ -29,6 +29,9 @@ jobs:
       # 执行 ESLint 检查
       - name: Run ESLint
         run: npm run lint
-      # 构建项目（可以选择性地执行）
+      # 构建项目
       - name: Build project
+        env:
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
         run: npm run build
