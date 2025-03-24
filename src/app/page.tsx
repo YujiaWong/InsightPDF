@@ -1,3 +1,4 @@
+import FileUploader from '@/components/fileUpload';
 import { Button } from '@/components/ui/button';
 import { UserButton } from '@clerk/nextjs';
 import { auth } from '@clerk/nextjs/server';
@@ -15,21 +16,28 @@ export default async function Home() { //next.js13新增，async说明服务器�
             <h1 className="text-black text-[48px] font-bold">
               Chat with any PDF
             </h1>
-            <UserButton />
+            <UserButton
+              appearance={{
+                elements: {
+                  rootBox: 'w-full h-full', // 允许撑满父容器
+                  avatarBox: 'w-full h-full rounded-full',
+                },
+              }}
+            />
           </div>
           <div className="flex">{isAuth && <Button>Go to chats</Button>}</div>
           <p className="text-center max-w-[500px] text-slate-600">
             Join millions of students, research and professionals to instantly
-            answer questions and understand research with AI 
+            answer questions and understand research with AI
           </p>
           <div className="w-full mt-4">
             {isAuth ? (
-              <h1>file upload</h1>
+              <FileUploader/>
             ) : (
               <Link href="/sign-in">
                 <Button>
                   Login to get Started!
-                  <BsBoxArrowInRight/>
+                  <BsBoxArrowInRight />
                 </Button>
               </Link>
             )}
