@@ -1,13 +1,24 @@
 // components/FileUploader.tsx
 'use client';
-import { useCallback } from 'react';
+import { uploadFilesToS3 } from '@/lib/s3';
 import { useDropzone } from 'react-dropzone';
 import { FaRegFilePdf } from 'react-icons/fa';
 
 export default function FileUploader() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const onDrop = async (acceptedFiles: File[]) => {
     console.log(acceptedFiles);
-  }, []);
+    const file = acceptedFiles[0];
+    if(file.size > 10*1024*1024) {
+      alert('please upload a smaller file');
+      return;
+    }
+    try{
+      const data = await uploadFilesToS3(file);
+      console.log('data',data);
+    }catch(error) {
+      console.log(error);
+    }
+  };
   //onDrop 被封装在 useCallback 中，且依赖数组为空,确保在组件生命周期中只会创建一次函数，避免重新渲染时重新创建函数。
   //onDrop 接受 acceptedFiles 作为参数，这样每次文件被拖拽或选择时，acceptedFiles 都是最新的，可以用来进行后续操作（比如上传或处理文件）。
 
